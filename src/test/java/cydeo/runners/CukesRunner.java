@@ -7,7 +7,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/features",
-        glue = "cydeo/step_definitions"
+        glue = "cydeo/step_definitions",
+        dryRun = true
+
 )
 public class CukesRunner {
 }
