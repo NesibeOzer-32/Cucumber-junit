@@ -10,9 +10,18 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeStep;
 
 public class Hooks {
-    @Before
+    //import from io.cucumber.java not from junit
+    @Before(order = 0)
     public void setupScenario(){
         System.out.println("====Setting up browser using cucumber @Before");
+    }
+    @Before(value = "@login", order = 1)
+    public void setupScenarioForLogins(){
+        System.out.println("==== this will only apply to scenarios with @login");
+    }
+    @Before(value = "@db", order = -1)
+    public void setupScenarioForDatabase(){
+        System.out.println("==== this will only apply to scenarios with @db");
     }
     @After
     public void teardownScenario(){
