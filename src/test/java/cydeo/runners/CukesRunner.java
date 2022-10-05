@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
         plugin = "html:target/cucumber-report.html",
         features = "src/test/resources/features",
         glue = "cydeo/step_definitions",
-        dryRun = false,
-        tags = "@Regression"
+        dryRun = true,
+        tags = "@wip"
 
 )
 public class CukesRunner {
