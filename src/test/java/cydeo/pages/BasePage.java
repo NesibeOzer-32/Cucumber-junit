@@ -24,13 +24,6 @@ public class BasePage {
     @FindBy(xpath = "//button[.='Logout']")
     public WebElement LogoutButton;
 
-    @FindBy(xpath = "")
-    public WebElement viewAllOrders;
 
-    @FindBy(xpath = "")
-    public WebElement viewAllOrders;
-
-    @FindBy(xpath = "")
-    public WebElement viewAllOrders;
 
 }

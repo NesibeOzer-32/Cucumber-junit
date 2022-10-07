@@ -14,7 +14,9 @@ public class Order_StepDefinitions {
     WebTableLoginPage webTableLoginPage=new WebTableLoginPage();
     @Given("user is already logged in and on order page")
     public void user_is_already_logged_in_and_on_order_page() {
+        //Getting the page using the URL from configuration.properties
         Driver.getDriver().get(ConfigurationReader.getProperty("web.Table.Url"));
+
         //Calling our login method to web table app
         webTableLoginPage.login();
 
