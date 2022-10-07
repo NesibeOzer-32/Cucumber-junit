@@ -1,16 +1,26 @@
 package cydeo.step_definitions;
 
+import cydeo.pages.BasePage;
 import cydeo.pages.WebTableLoginPage;
+import cydeo.utilities.ConfigurationReader;
+import cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class Order_StepDefinitions {
 
+    BasePage basePage= new BasePage();
     WebTableLoginPage webTableLoginPage=new WebTableLoginPage();
     @Given("user is already logged in and on order page")
     public void user_is_already_logged_in_and_on_order_page() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("web.Table.Url"));
+        //Calling our login method to web table app
         webTableLoginPage.login();
+
+        //clicking to "order" link to go order page
+        basePage.order.click();
+
 
     }
     @When("user selects product type {string}")
