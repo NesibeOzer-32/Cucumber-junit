@@ -4,6 +4,7 @@ package cydeo.step_definitions;
 In the class we will be able to pass pre- & post- conditions to each scenario and each step
  */
 
+import cydeo.utilities.BrowserUtils;
 import cydeo.utilities.Driver;
 import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
@@ -34,8 +35,8 @@ public class Hooks {
         }
 
 
-
-        Driver.closeDriver();
+        BrowserUtils.sleep(5);
+    //    Driver.closeDriver();
 
         //System.out.println("====Closing browser using cucumber @ After");
         //System.out.println("====Scenario ended/ Take screenshot if failed");
