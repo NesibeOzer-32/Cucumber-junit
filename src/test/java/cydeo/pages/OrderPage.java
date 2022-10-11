@@ -7,13 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class OrderPage extends BasePage{
+public class OrderPage extends BasePage {
 
     public OrderPage(){
-        PageFactory.initElements(Driver.getDriver(),this);
+        PageFactory.initElements(Driver.getDriver(), this);
     }
-    @FindBy(xpath = "//button[.='Order']")
-    public WebElement order;
 
     @FindBy(name = "product")
     public WebElement productDropdown;
@@ -47,6 +45,7 @@ public class OrderPage extends BasePage{
 
     @FindBy(css = "button[type='submit']")
     public WebElement processOrderBtn;
+
 
 
 }
