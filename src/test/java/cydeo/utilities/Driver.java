@@ -1,8 +1,10 @@
 package cydeo.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -14,7 +16,7 @@ public class Driver {
 
 
     /*
-   Creating a private constructor, so we are closing
+   /Creating a private constructor, so we are closing
    access to the object of this class from outside the class
     */
 
@@ -55,8 +57,9 @@ We make it static because we will use it in a static method.
             switch (browserType){
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driverPool.set(new ChromeDriver());
-                    driverPool.get().manage().window().maximize();
+                    driverPool.set( new ChromeDriver(new ChromeOptions().setHeadless(true)));
+                    driverPool.get().manage().window().setSize(new Dimension(1500, 1500));
+                    //driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
                 case "firefox":
