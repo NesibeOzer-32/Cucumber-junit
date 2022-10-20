@@ -4,7 +4,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
@@ -39,6 +42,11 @@ We make it static because we will use it in a static method.
              */
             String browserType = ConfigurationReader.getProperty("browser");
 
+            if (System.getProperty("BROWSER") == null) {
+                browserType = ConfigurationReader.getProperty("browser");
+            } else{
+                browserType= System.getProperty("BROWSER");
+            }
 
             /*
                 Depending on the browserType that will be return from configuration.properties file
@@ -57,7 +65,32 @@ We make it static because we will use it in a static method.
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
+                case "remote-chrome":
+                    try {
+                        // assign your grid server address
+                        String gridAddress = "172.31.87.120";
+                        URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("chrome");
+                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
+                    break;
+                case "remote-firefox":
+
+                    try {
+                        // assign your grid server address
+                        String gridAddress = "52.90.101.17";
+                        URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("firefox");
+                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
 
             }
         }
